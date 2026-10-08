@@ -1,18 +1,24 @@
-# CareerMatch Demo
+# CareerMatch — React + Node.js/Express + PostgreSQL
 
-Open `index.html` in Chrome/Edge.
+This is the React/backend/database rebuild of the original CareerMatch HTML prototype. The UI direction and demo flow are preserved; the data layer is now API + PostgreSQL ready.
 
-## Demo sequence
-1. Landing page → Explore as Student.
-2. Dashboard → show 78% Career Readiness.
-3. My Career Profile → show structured student profile.
-4. Skill Gap → show strengths, gaps and action plan.
-5. Find Internships → filter Vadodara / Offline / 1 month.
-6. Open NovaTech AI/ML Intern → show 92% match and explainable match factors.
-7. Apply → Applications page.
-8. Career Assistant → ask “Am I ready for an AI internship?”
-9. Switch role → Recruiter.
-10. Recruiter Dashboard → Post Internship → Student Matches → view candidate.
-11. Explain the future vision: local, short-term, part-time and graduate opportunities.
+## Stack
+- Frontend: React + Vite
+- Backend: Node.js + Express
+- Database: PostgreSQL
+- Matching: transparent deterministic scoring (no AI dependency required for the MVP)
 
-This is a front-end hackathon MVP. Data is seeded and actions work in-browser. It requires no server.
+## Run locally
+1. Install PostgreSQL and create a database named `careermatch`.
+2. Run `database/schema.sql`, then `database/seed.sql`.
+3. Copy `server/.env.example` to `server/.env` and update `DATABASE_URL`.
+4. From this folder run `npm install`, `npm run install:all`, then `npm run dev`.
+5. Open http://localhost:5173
+
+Demo accounts are selected from the landing page; the hackathon prototype does not require passwords.
+
+## Vercel / deployment
+The frontend can be deployed to Vercel, but PostgreSQL must be hosted separately (for example a managed PostgreSQL provider). Set `VITE_API_URL` to the deployed API URL and configure `DATABASE_URL` on the backend host. Do not put database credentials in the frontend.
+
+## PS2 alignment
+The official PS2 MVS asks for profile creation, skills with proficiency, career selection, career-specific requirements, comparison, skill gaps and a readiness score. CareerMatch implements those core concepts and extends them with structured recruiter opportunity matching, location, mode, duration, availability and applications.
